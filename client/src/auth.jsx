@@ -36,7 +36,7 @@ const authorization=`Bearer ${token}`;
         }
         try {
           setisLoading(true);
-            const response = await fetch(`http://localhost:5000/api/auth/user`, {
+            const response = await fetch(`https://coding-hub-backend.vercel.app/api/auth/user`, {
               method: "GET",
               headers: {
                 Authorization:`Bearer ${token}`,
@@ -60,7 +60,7 @@ const authorization=`Bearer ${token}`;
     const userServices= async()=>{
       
       try{
-        const response= await fetch(`http://localhost:5000/api/data/service`,{
+        const response= await fetch(`https://coding-hub-backend.vercel.app/api/data/service`,{
           method:"GET",
 
         })
