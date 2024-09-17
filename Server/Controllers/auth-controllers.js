@@ -77,7 +77,7 @@ const register = async (req, res,next) => {
       password,
     });
     if(userCreated){
-     sendVerifyMail(req.body.username,req.body.email,userCreated._id);
+    await sendVerifyMail(req.body.username,req.body.email,userCreated._id);
     }
 
     res
