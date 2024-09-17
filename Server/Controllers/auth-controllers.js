@@ -159,7 +159,7 @@ const verifyMail=async(req,res)=>{
   try{
 const updateInfo=  await  User.updateOne({_id:req.query.id},{ $set :{isVerification:true}});
 console.log(updateInfo);
-return res.status(200).send("Email Verified");
+return res.status(200).send("******  Email Verified ******");
 
   }catch(err){
     console.log(err);
