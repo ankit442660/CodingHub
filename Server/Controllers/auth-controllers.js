@@ -32,7 +32,7 @@ const sendVerifyMail=async(name,email,user_id)=>{
       from:'kumarjhaa366@gmail.com',
       to:email,
       subject:'for verification mail',
-      html:'<h2">Hii '+name+' ,please click here to  <a href="http://localhost:5000/api/auth/verify?id='+user_id+'" >  verify  </a>  your mail.</h2>',
+      html:'<h2">Hii '+name+' ,please click here to  <a href="https://coding-hub-backend.vercel.app/api/auth/verify?id='+user_id+'" >  verify  </a>  your mail.</h2>',
    }
    transporter.sendMail(mailOptions,function(error,info){
     if(error){
