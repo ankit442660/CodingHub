@@ -15,7 +15,7 @@ export const AdminContact = () => {
    
 
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/contacts`, {
+      const response = await fetch(`https://coding-hub-backend.vercel.app/api/admin/contacts`, {
         method: "GET",
         headers: {
           Authorization: authorization,
@@ -32,7 +32,7 @@ export const AdminContact = () => {
     }
   };
   const deleteUser=async(id)=>{
-    const response=await fetch(`http://localhost:5000/api/admin/contact/delete/${id}`,{
+    const response=await fetch(`https://coding-hub-backend.vercel.app/api/admin/contact/delete/${id}`,{
         method:"DELETE",
         headers:{
             Authorization:authorization,
