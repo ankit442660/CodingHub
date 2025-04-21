@@ -25,29 +25,6 @@ export const Register = () => {
   };
 
   const handleSubmit = async (e) => {
-<<<<<<< HEAD
-  e.preventDefault();
-  console.log(user);
-  try {
-    const response = await fetch(`https://coding-hub-backend.vercel.app/api/auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-    // console.log("response data : ", response);
-     const responseData = await response.json();
-    //  console.log("Response:-", responseData);
-    if (response.ok) {
-      // const responseData = await response.json();
-      //  console.log("Response Token", responseData.token);
-      // storeTokenInLs(responseData.token);
-      // localStorage.setItem("token",responseData.token);
-      setUser({ username: "", email: "", phone: "", password: "" });
-      toast.success("GO to your Email Account and Verify it",{
-        autoClose :4000,
-=======
     e.preventDefault();
     console.log(user);
     try {
@@ -57,7 +34,6 @@ export const Register = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
->>>>>>> bef4b52 (In this commit we add email verification and modify some design)
       });
       // console.log("response data : ", response);
       const responseData = await response.json();
