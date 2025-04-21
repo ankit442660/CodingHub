@@ -1,17 +1,17 @@
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { useAuth } from "../auth";
 import { toast } from "react-toastify";
-
+// import {axios} from "axios";
 export const Register = () => {
   const [user, setUser] = useState({
-    username:"",
-    email:"",
-    phone:"",
-    password:"",
+    username: "",
+    email: "",
+    phone: "",
+    password: "",
   });
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   //  const {storeTokenInLs}=useAuth();
   //handle the input event
   const handleInput = (e) => {
@@ -25,6 +25,7 @@ export const Register = () => {
   };
 
   const handleSubmit = async (e) => {
+<<<<<<< HEAD
   e.preventDefault();
   console.log(user);
   try {
@@ -46,17 +47,43 @@ export const Register = () => {
       setUser({ username: "", email: "", phone: "", password: "" });
       toast.success("GO to your Email Account and Verify it",{
         autoClose :4000,
+=======
+    e.preventDefault();
+    console.log(user);
+    try {
+      const response = await fetch(`http://localhost:5000/api/auth/register`, {
+        method :'POST' ,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+>>>>>>> bef4b52 (In this commit we add email verification and modify some design)
       });
-      navigate("/login");
-      // console.log(responseData);
-    } else {
-      // console.log("error inside response ", "error");
-      toast.error(responseData.extraDetails ? responseData.extraDetails[0] : responseData.message);
+      // console.log("response data : ", response);
+      const responseData = await response.json();
+      //  console.log("Response:-", responseData);
+      if (response.ok) {
+        // const responseData = await response.json();
+        //  console.log("Response Token", responseData.token);
+        // storeTokenInLs(responseData.token);
+        // localStorage.setItem("token",responseData.token);
+        setUser({ username: "", email: "", phone: "", password: "" });
+        toast.success("GO to your Email Account and Verify it", {
+          autoClose: 4000,
+        });
+        navigate("/login");
+        // console.log(responseData);
+      } else {
+        // console.log("error inside response ", "error");
+        toast.error(
+          responseData.extraDetails
+            ? responseData.extraDetails[0]
+            : responseData.message
+        );
+      }
+    } catch (error) {
+      console.error("Error", error);
     }
-  } catch (error) {
-    console.error("Error", error);
-  }
-  
   };
   return (
     <>
@@ -72,20 +99,23 @@ export const Register = () => {
                 />
               </div>
               {/* lets tackle registraion from */}
-              <div className="max-w-[550px] sm:w-96 min-w-[220px]">
+              <div className="max-w-[550px] sm:w-96 min-w-[220px] backdrop-blur-md bg-slate-100 p-5 rounded-md hover:brightness-105 hover:delay-150 shadow-blue-600 shadow-md">
                 <h1 className="uppercase text-slate-400 text-3xl md:pr-10 pr-2">
                   registraion form
                 </h1>
                 <br />
                 <form onSubmit={handleSubmit}>
                   <div className="flex flex-col">
-                    <label htmlFor="username" className="uppercase text-white">
+                    <label
+                      htmlFor="username"
+                      className="uppercase  text-[20px] text-balance font-sans text-emerald-600"
+                    >
                       username:
                     </label>
 
                     <input
                       type="text"
-                      className="rounded-md bg-white text-black p-2 outline-none my-2"
+                      className="rounded-md bg-zinc-800 text-yellow-50 p-2 outline-none my-2"
                       name="username"
                       placeholder="enter your username"
                       id="username"
@@ -96,12 +126,15 @@ export const Register = () => {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label htmlFor="email" className="uppercase text-white">
+                    <label
+                      htmlFor="email"
+                      className="uppercase text-[20px] text-balance font-sans text-emerald-600"
+                    >
                       email:
                     </label>
                     <input
                       type="text"
-                      className="rounded-md bg-white text-black p-2 outline-none my-2"
+                      className="rounded-md bg-zinc-800 text-yellow-50 p-2 outline-none my-2"
                       name="email"
                       placeholder="enter your email "
                       id="email"
@@ -112,15 +145,21 @@ export const Register = () => {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label htmlFor="phone" className="uppercase text-white">
+                    <label
+                      htmlFor="phone"
+                      className="uppercase text-[20px] text-balance font-sans text-emerald-600"
+                    >
                       phone:
                     </label>
                     <input
-                      type="number"
-                      className="rounded-md bg-white text-black p-2 outline-none my-2"
+                      type="tel"
+                      className="rounded-md bg-zinc-800 text-yellow-50 p-2 outline-none my-2"
                       name="phone"
                       placeholder="enter your phone no"
                       id="phone"
+                      maxLength="10"
+                      pattern="[0-9]*"
+                      inputMode="numeric"
                       required
                       autoComplete="off"
                       value={user.phone}
@@ -128,12 +167,15 @@ export const Register = () => {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label htmlFor="password" className="uppercase text-white">
+                    <label
+                      htmlFor="password"
+                      className="uppercase text-[20px] text-balance font-sans text-emerald-600"
+                    >
                       password:
                     </label>
                     <input
                       type="password"
-                      className="rounded-md bg-white text-black p-2 outline-none my-2"
+                      className="rounded-md bg-zinc-800 text-yellow-50 p-2 outline-none my-2"
                       name="password"
                       placeholder="enter your password"
                       id="password"
